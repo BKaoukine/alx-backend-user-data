@@ -5,6 +5,8 @@ import re
 import logging
 from typing import List
 
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
+
 
 def filter_datum(
         fields: List[str],
@@ -66,7 +68,7 @@ class RedactingFormatter(logging.Formatter):
             self.fields, self.REDACTION, original_message, self.SEPARATOR)
 
     def get_logger() -> logging.Logger:
-        """gets a logger named user_data"""
+        """Get a logger named user_data."""
         logger = logging.getLogger("user_data")
         logger.setLevel(logging.INFO)
         logger.propagate = False
