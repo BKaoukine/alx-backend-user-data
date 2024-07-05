@@ -67,12 +67,12 @@ class RedactingFormatter(logging.Formatter):
         return filter_datum(
             self.fields, self.REDACTION, original_message, self.SEPARATOR)
 
-    def get_logger() -> logging.Logger:
-        """Get a logger named user_data."""
-        logger = logging.getLogger("user_data")
-        logger.setLevel(logging.INFO)
-        logger.propagate = False
-        stream_handler = logging.StreamHandler()
-        stream_handler.setFormatter(RedactingFormatter(PII_FIELDS))
-        logger.addHandler(stream_handler)
-        return logger
+def get_logger() -> logging.Logger:
+    """Get a logger named user_data."""
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(RedactingFormatter(PII_FIELDS))
+    logger.addHandler(stream_handler)
+    return logger
